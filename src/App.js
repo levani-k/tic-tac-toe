@@ -60,6 +60,23 @@ class App extends React.Component{
     }
   }
 
+  restartGame = () => {
+    this.setState({
+      button1: '',
+      button2: '',
+      button3: '',
+      button4: '',
+      button5: '',
+      button6: '',
+      button7: '',
+      button8: '',
+      button9: '',
+      counter: 0,
+      displayWhoWon: false,
+      winner: ''
+    })
+  }
+
   render() {
     let array = ['button1', 'button2', 'button3', 'button4', 'button5', 'button6', 'button7', 'button8', 'button9']
     return (
@@ -77,8 +94,10 @@ class App extends React.Component{
           })
         }
         {
-          this.state.displayWhoWon ? <p>winner is {this.state.winner}</p> : <p></p>
+          this.state.displayWhoWon ? <h1 className='winnerText'>winner is {this.state.winner}</h1> : <p></p>
         }
+        <br />
+        <button className='restartButton' onClick={this.restartGame}>restart</button>
       </div>
     );
   }

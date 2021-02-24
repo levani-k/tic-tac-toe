@@ -7,9 +7,34 @@
   text-align: center;
 }
 
+.winnerText {
+  position: fixed;
+  top: 45vh;
+  left: 45vw;
+  z-index: 2;
+}
+
+.restartButton {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  width: 100px;
+}
+
 @media only screen and (max-width: 600px) {
   .button {
     width: 26vw;
     height: 25vw;
+  }
+
+  .winnerText {
+    position: fixed;
+    top: 40vh;
+    left: 30vw;
+    z-index: 2;
   }
 }
