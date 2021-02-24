@@ -1,6 +1,7 @@
 .button {
-  height: 28vh;
-  width: 26vw;
+  margin: 1vh 1vw;
+  width: 24vw;
+  height: 25vh;
 }
 
 .app {
@@ -36,5 +37,10 @@
     top: 40vh;
     left: 30vw;
     z-index: 2;
+  }
+
+  .app {
+    position: fixed;
+    top: 25vw;
   }
 }
