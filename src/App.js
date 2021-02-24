@@ -33,40 +33,25 @@ class App extends React.Component{
          counter: counter + 1
       })
     }
+    this.winner()
   }
 
   winner = () => {
     let array = ['button1', 'button2', 'button3', 'button4', 'button5', 'button6', 'button7', 'button8', 'button9']
-    let options = ['X', 'O']
-    for (let optionsIndex = 0; optionsIndex < 2; optionsIndex++) {
-      for (let index = 0; index < 8; index+=3) {
-        if(this.state[array[index]] === options[optionsIndex] && this.state[array[index+1]] === options[optionsIndex] && this.state[array[index+2]] === options[optionsIndex]) {
+    const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      let options = ['X', 'O']
+      for (let index = 0; index < options.length; index++) {
+        if (this.state[array[a]] === options[index] && this.state[array[a]] === this.state[array[b]] && this.state[array[b]] === this.state[array[c]] ) {
           this.setState({
             displayWhoWon: true,
-            winner: options[optionsIndex]
+            winner: options[index]
           })
         }
-      }
-      for (let index = 0; index < 3; index++) {
-        if(this.state[array[index]] === options[optionsIndex] && this.state[array[index+3]] === options[optionsIndex] && this.state[array[index+6]] === options[optionsIndex]) {
-          this.setState({
-            displayWhoWon: true,
-            winner: options[optionsIndex]
-          })
-        }
-      }
-      if(this.state[array[0]] === options[optionsIndex] && this.state[array[4]] === options[optionsIndex] && this.state[array[8]] === options[optionsIndex]) {
-        this.setState({
-          displayWhoWon: true,
-          winner: options[optionsIndex]
-        })
-      } else if(this.state[array[2]] === options[optionsIndex] && this.state[array[4]] === options[optionsIndex] && this.state[array[6]] === options[optionsIndex]) {
-        this.setState({
-          displayWhoWon: true,
-          winner: options[optionsIndex]
-        })
       }
     }
+
     if(this.state.counter === 8 && !this.state.displayWhoWon) {
       this.setState({
           displayWhoWon: true,
@@ -76,85 +61,27 @@ class App extends React.Component{
   }
 
   render() {
+    let array = ['button1', 'button2', 'button3', 'button4', 'button5', 'button6', 'button7', 'button8', 'button9']
     return (
       <div id='app' className='app'>
         <h1>Here you can play Tic Tac Toe</h1>
         {
-          this.winner()
+          array.map((button, index) => {
+            if(!this.state[button]) {
+              return <button key={index} value={button} className='button' onClick={this.handleOnClick}>·</button>
+            } else if(this.state[button] === 'X') {
+              return <button key={index} value={button} className='button' onClick={this.handleOnClick}>X</button>
+            } else if(this.state[button] === 'O') {
+              return <button key={index} value={button} className='button' onClick={this.handleOnClick}>O</button>
+            }
+          })
         }
-        {
-          !this.state.button1 
-          ? <button value='button1' className='button' onClick={this.handleOnClick}>·</button>
-          : this.state.button1 === 'X'
-          ? <button value='button1' className='button' onClick={this.handleOnClick}>X</button>
-          : <button value='button1' className='button' onClick={this.handleOnClick}>O</button>
-        }
-        {
-          !this.state.button2 
-          ? <button value='button2' className='button' onClick={this.handleOnClick}>·</button>
-          : this.state.button2 === 'X'
-          ? <button value='button2' className='button' onClick={this.handleOnClick}>X</button>
-          : <button value='button2' className='button' onClick={this.handleOnClick}>O</button>
-        }
-        {
-          !this.state.button3 
-          ? <button value='button3' className='button' onClick={this.handleOnClick}>·</button>
-          : this.state.button3 === 'X'
-          ? <button value='button3' className='button' onClick={this.handleOnClick}>X</button>
-          : <button value='button3' className='button' onClick={this.handleOnClick}>O</button>
-        }
-        <br />
-        {
-          !this.state.button4 
-          ? <button value='button4' className='button' onClick={this.handleOnClick}>·</button>
-          : this.state.button4 === 'X'
-          ? <button value='button4' className='button' onClick={this.handleOnClick}>X</button>
-          : <button value='button4' className='button' onClick={this.handleOnClick}>O</button>
-        }
-        {
-          !this.state.button5 
-          ? <button value='button5' className='button' onClick={this.handleOnClick}>·</button>
-          : this.state.button5 === 'X'
-          ? <button value='button5' className='button' onClick={this.handleOnClick}>X</button>
-          : <button value='button5' className='button' onClick={this.handleOnClick}>O</button>
-        }
-        {
-          !this.state.button6
-          ? <button value='button6' className='button' onClick={this.handleOnClick}>·</button>
-          : this.state.button6 === 'X'
-          ? <button value='button6' className='button' onClick={this.handleOnClick}>X</button>
-          : <button value='button6' className='button' onClick={this.handleOnClick}>O</button>
-        }
-        <br />
-        {
-          !this.state.button7 
-          ? <button value='button7' className='button' onClick={this.handleOnClick}>·</button>
-          : this.state.button7 === 'X'
-          ? <button value='button7' className='button' onClick={this.handleOnClick}>X</button>
-          : <button value='button7' className='button' onClick={this.handleOnClick}>O</button>
-        }
-        {
-          !this.state.button8
-          ? <button value='button8' className='button' onClick={this.handleOnClick}>·</button>
-          : this.state.button8 === 'X'
-          ? <button value='button8' className='button' onClick={this.handleOnClick}>X</button>
-          : <button value='button8' className='button' onClick={this.handleOnClick}>O</button>
-        }
-        {
-          !this.state.button9 
-          ? <button value='button9' className='button' onClick={this.handleOnClick}>·</button>
-          : this.state.button9 === 'X'
-          ? <button value='button9' className='button' onClick={this.handleOnClick}>X</button>
-          : <button value='button9' className='button' onClick={this.handleOnClick}>O</button>
-        }
-
         {
           this.state.displayWhoWon ? <p>winner is {this.state.winner}</p> : <p></p>
         }
       </div>
     );
   }
-  
 }
 
 export default App;
