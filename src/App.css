@@ -1,0 +1,15 @@
+.button {
+  height: 25vh;
+  width: 25vh;
+}
+
+.app {
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .button {
+    width: 25vw;
+    height: 25vw;
+  }
+}
