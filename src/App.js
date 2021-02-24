@@ -22,18 +22,16 @@ class App extends React.Component{
 
   handleOnClick = (event) => {
     const { counter } = this.state
-    if(!this.state[event.target.value] && counter % 2 === 0 && counter < 9 && !this.state.displayWhoWon) {
-      this.setState({
-         [event.target.value]: 'X',
-         counter: counter + 1
-      })
-    } else if(!this.state[event.target.value] && counter % 2 === 1 && counter < 9 && !this.state.displayWhoWon) {
-      this.setState({
-         [event.target.value]: 'O',
-         counter: counter + 1
-      })
+    const arr = ['X', 'O'] 
+    for (let index = 0; index < arr.length; index++) {
+      if(!this.state[event.target.value] && counter % 2 === index && counter < 9 && !this.state.displayWhoWon) {
+        this.setState({
+          [event.target.value]: arr[index],
+          counter: counter + 1
+        })
+        this.winner()
+      }
     }
-    this.winner()
   }
 
   winner = () => {
