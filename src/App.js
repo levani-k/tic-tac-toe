@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import Winner from './Winner'
 
 class App extends React.Component{
   constructor() {
@@ -14,46 +15,45 @@ class App extends React.Component{
       button7: '',
       button8: '',
       button9: '',
-      counter: 0,
-      displayWhoWon: false,
-      winner: ''
+      counter: 0
     }
   }
+
+  // winner = () => {
+  //   let array = ['button1', 'button2', 'button3', 'button4', 'button5', 'button6', 'button7', 'button8', 'button9']
+  //   const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+  //   for (let i = 0; i < lines.length; i++) {
+  //     const [a, b, c] = lines[i];
+  //     let options = ['X', 'O']
+  //     for (let index = 0; index < options.length; index++) {
+  //       if (this.state[array[a]] === options[index] && this.state[array[a]] === this.state[array[b]] && this.state[array[b]] === this.state[array[c]] ) {
+  //         this.setState({
+  //           displayWhoWon: true,
+  //           winner: options[index]
+  //         })
+  //       }
+  //     }
+  //   }
+
+  //   if(this.state.counter === 8 && !this.state.displayWhoWon) {
+  //     this.setState({
+  //         displayWhoWon: true,
+  //         winner: "nobody"
+  //     })
+  //   }
+  // }
 
   handleOnClick = (event) => {
     const { counter } = this.state
-    const arr = ['X', 'O'] 
-    for (let index = 0; index < arr.length; index++) {
-      if(!this.state[event.target.value] && counter % 2 === index && counter < 9 && !this.state.displayWhoWon) {
-        this.setState({
-          [event.target.value]: arr[index],
-          counter: counter + 1
-        })
-        this.winner()
-      }
-    }
-  }
-
-  winner = () => {
-    let array = ['button1', 'button2', 'button3', 'button4', 'button5', 'button6', 'button7', 'button8', 'button9']
-    const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      let options = ['X', 'O']
-      for (let index = 0; index < options.length; index++) {
-        if (this.state[array[a]] === options[index] && this.state[array[a]] === this.state[array[b]] && this.state[array[b]] === this.state[array[c]] ) {
-          this.setState({
-            displayWhoWon: true,
-            winner: options[index]
-          })
-        }
-      }
-    }
-
-    if(this.state.counter === 8 && !this.state.displayWhoWon) {
+    if(!this.state[event.target.value] && counter % 2 === 0 && counter < 9) {
       this.setState({
-          displayWhoWon: true,
-          winner: "nobody"
+        [event.target.value]: 'X',
+        counter: counter + 1
+      })
+    } else if(!this.state[event.target.value] && counter % 2 === 1 && counter < 9) {
+      this.setState({
+        [event.target.value]: 'O',
+        counter: counter + 1
       })
     }
   }
@@ -69,9 +69,7 @@ class App extends React.Component{
       button7: '',
       button8: '',
       button9: '',
-      counter: 0,
-      displayWhoWon: false,
-      winner: ''
+      counter: 0
     })
   }
 
@@ -91,9 +89,7 @@ class App extends React.Component{
             }
           })
         }
-        {
-          this.state.displayWhoWon ? <h1 className='winnerText'>winner is {this.state.winner}</h1> : <p></p>
-        }
+        <Winner state={this.state} />
         <br />
         <button className='restartButton' onClick={this.restartGame}>restart</button>
       </div>
