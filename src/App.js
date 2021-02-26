@@ -82,7 +82,7 @@ class App extends React.Component{
   render() {
     return (
       <div id='app' className='app'>
-        <h1>Here you can play Tic Tac Toe</h1>
+        <h1 className='header'>Here you can play Tic Tac Toe</h1>
         {this.showBoardAndWinner()}
         <br />
         <button className='restartButton' onClick={this.restartGame}>restart</button>
