@@ -2,6 +2,8 @@
   margin: 1vh 1vw;
   width: 24vw;
   height: 25vh;
+  font-size: 32px;
+  background-color: rgb(216, 228, 216);
 }
 
 .app {
@@ -9,10 +11,8 @@
 }
 
 .winnerText {
-  position: fixed;
-  top: 45vh;
-  left: 45vw;
-  z-index: 2;
+  text-align: center;
+  font-size: 48px;
 }
 
 .restartButton {
@@ -32,15 +32,8 @@
     height: 25vw;
   }
 
-  .winnerText {
-    position: fixed;
-    top: 40vh;
-    left: 30vw;
-    z-index: 2;
-  }
-
   .app {
     position: fixed;
-    top: 25vw;
+    top: 12.5vh;
   }
 }
